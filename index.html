@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- существующий код -->
+
+  <style>
+    /* существующие стили */
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    nav ul li a.active {
+      color: #00cfc1;
+      text-shadow: 0 0 8px #00cfc1;
+      border-bottom: 2px solid #00cfc1;
+    }
+
+    img {
+      loading: lazy;
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- существующий код -->
+
+  <script>
+    // Preloader
+    window.addEventListener('load', function () {
+      document.getElementById('preloader').style.display = 'none';
+    });
+
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('show');
+    }
+
+    function closeMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.remove('show');
+    }
+
+    function toggleFAQ(item) {
+      const p = item.querySelector('p');
+      if (p.style.display === 'block') {
+        p.style.display = 'none';
+      } else {
+        p.style.display = 'block';
+      }
+    }
+
+    // Плавное появление всех секций при скролле и кнопка вверх
+    window.addEventListener('scroll', function () {
+      const sections = document.querySelectorAll('.animate-section');
+      const screenPosition = window.innerHeight / 1.3;
+
+      sections.forEach(section => {
+        const sectionPosition = section.getBoundingClientRect().top;
+        if (sectionPosition < screenPosition) {
+          section.classList.add('visible');
+        }
+      });
+
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.style.display = 'block';
+      } else {
+        scrollTopBtn.style.display = 'none';
+      }
+
+      // Подсветка активного пункта меню
+      let sectionsArray = ['about', 'features', 'benefits', 'contact'];
+      sectionsArray.forEach(id => {
+        let section = document.getElementById(id);
+        let link = document.querySelector(`nav ul li a[href='#${id}']`);
+        if (section && link) {
+          let rect = section.getBoundingClientRect();
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        }
+      });
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showSuccessMessage() {
+      setTimeout(function () {
+        document.getElementById('success-message').style.display = 'block';
+      }, 500);
+    }
+  </script>
+</body>
+</html>
