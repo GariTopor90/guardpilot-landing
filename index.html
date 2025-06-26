@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -35,7 +35,51 @@
       min-height: 100%;
       z-index: -1;
       object-fit: cover;
-      filter: brightness(0.5);
+      display: none;
+    }
+
+    #video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    #video-preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('video-placeholder.jpg') no-repeat center center / cover;
+      z-index: -1;
+    }
+
+    #video-control {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #00cfc1;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00cfc1;
+      z-index: 1001;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #video-control.visible {
+      opacity: 1;
+    }
+
+    #video-control:hover {
+      background-color: #00a99d;
     }
 
     nav {
@@ -179,6 +223,13 @@
     }
 
     @media (max-width: 768px) {
+      #video-control {
+        top: 80px;
+        right: 20px;
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+
       nav ul {
         display: none;
         flex-direction: column;
@@ -202,10 +253,15 @@
   </style>
 </head>
 <body>
+  <div id="video-preloader"></div>
+
   <video autoplay muted loop id="background-video">
     <source src="your-video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
+
+  <div id="video-overlay"></div>
+  <button id="video-control" onclick="toggleVideo()">Pause</button>
 
   <div id="preloader"><span>Loading...</span></div>
 
@@ -263,6 +319,14 @@
   <script>
     window.addEventListener('load', function () {
       document.getElementById('preloader').style.display = 'none';
+      const video = document.getElementById('background-video');
+      const preloader = document.getElementById('video-preloader');
+      const controlButton = document.getElementById('video-control');
+      video.oncanplaythrough = function () {
+        video.style.display = 'block';
+        preloader.style.display = 'none';
+        controlButton.classList.add('visible');
+      };
     });
 
     function toggleMenu() {
@@ -273,6 +337,18 @@
     function closeMenu() {
       const menu = document.getElementById('menu');
       menu.classList.remove('show');
+    }
+
+    function toggleVideo() {
+      const video = document.getElementById('background-video');
+      const button = document.getElementById('video-control');
+      if (video.paused) {
+        video.play();
+        button.textContent = 'Pause';
+      } else {
+        video.pause();
+        button.textContent = 'Play';
+      }
     }
 
     window.addEventListener('scroll', function () {
