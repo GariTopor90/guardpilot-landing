@@ -171,6 +171,22 @@
       color: #00a99d;
     }
 
+    .gallery {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+    }
+
+    .gallery img {
+      max-height: 200px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -186,6 +202,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#how">How it works</a></li>
       <li><a href="#app">Mobile App</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -204,16 +221,25 @@
   <section id="how" class="animate-section">
     <h2>How It Works</h2>
     <ul>
-      <li>Step 1: Launch drone patrol via mobile app.</li>
-      <li>Step 2: Real-time monitoring and AI-based threat detection.</li>
-      <li>Step 3: Instant alerts and optional manual intervention.</li>
-      <li>Step 4: Automatic reporting and patrol logs.</li>
+      <li>🚀 Step 1: Launch drone patrol via mobile app.</li>
+      <li>🛰️ Step 2: Real-time monitoring and AI-based threat detection.</li>
+      <li>⚡ Step 3: Instant alerts and optional manual intervention.</li>
+      <li>📊 Step 4: Automatic reporting and patrol logs.</li>
     </ul>
   </section>
 
   <section id="app" class="animate-section">
     <h2>Mobile App</h2>
-    <p>Control GuardPilot directly from your smartphone: live video, real-time notifications, patrol scheduling, and manual override controls all in one easy-to-use interface.</p>
+    <p>📱 Control GuardPilot directly from your smartphone: live video, real-time notifications, patrol scheduling, and manual override controls all in one easy-to-use interface.</p>
+  </section>
+
+  <section id="gallery" class="animate-section">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="gallery1.jpg" alt="Drone in Action">
+      <img src="gallery2.jpg" alt="Mobile App Interface">
+      <img src="gallery3.jpg" alt="Drone Patrol Zone">
+    </div>
   </section>
 
   <section id="contact" class="animate-section">
