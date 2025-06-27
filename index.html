@@ -68,7 +68,7 @@
 
     header {
       text-align: center;
-      padding: 100px 20px 50px;
+      padding: 120px 20px 50px;
     }
 
     header h1 {
@@ -78,13 +78,13 @@
     }
 
     header p {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       margin-bottom: 30px;
     }
 
     header a {
       padding: 15px 30px;
-      background-color: #00cfc1;
+      background-color: #ff7a00;
       color: white;
       text-decoration: none;
       border-radius: 5px;
@@ -94,7 +94,7 @@
     }
 
     header a:hover {
-      background-color: #00a99d;
+      background-color: #e96b00;
       transform: scale(1.05);
     }
 
@@ -184,17 +184,37 @@
     <img src="logo.png" alt="GuardPilot Logo" class="logo">
     <ul id="menu">
       <li><a href="#about">About</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#app">Mobile App</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
   <header>
     <h1>GuardPilot</h1>
-    <p>The Future of Autonomous Security</p>
+    <p>Autonomous Security Drones with Real-Time Mobile Control</p>
     <a href="#contact">Request Demo</a>
   </header>
+
+  <section id="about" class="animate-section">
+    <h2>About GuardPilot</h2>
+    <p>GuardPilot is a smart autonomous drone security system equipped with AI modules, real-time patrol monitoring, and mobile app control. Simple integration and instant alerts for your safety.</p>
+  </section>
+
+  <section id="how" class="animate-section">
+    <h2>How It Works</h2>
+    <ul>
+      <li>Step 1: Launch drone patrol via mobile app.</li>
+      <li>Step 2: Real-time monitoring and AI-based threat detection.</li>
+      <li>Step 3: Instant alerts and optional manual intervention.</li>
+      <li>Step 4: Automatic reporting and patrol logs.</li>
+    </ul>
+  </section>
+
+  <section id="app" class="animate-section">
+    <h2>Mobile App</h2>
+    <p>Control GuardPilot directly from your smartphone: live video, real-time notifications, patrol scheduling, and manual override controls all in one easy-to-use interface.</p>
+  </section>
 
   <section id="contact" class="animate-section">
     <h2>Contact Us</h2>
@@ -202,6 +222,7 @@
       <input type="text" name="name" placeholder="Your Name" required><br>
       <input type="email" name="email" placeholder="Your Email" required><br>
       <textarea name="message" rows="4" placeholder="Your Message" required></textarea><br>
+      <label><input type="checkbox" required> I agree to the data processing policy.</label><br><br>
       <button type="submit">Send Message</button>
     </form>
     <p>Telegram: <a href="https://t.me/JV_Guard" target="_blank">@JV_Guard</a></p>
