@@ -8,23 +8,52 @@
   <meta name="keywords" content="GuardPilot, Security Drone, Surveillance, Autonomous Drone, Smart Security">
   <meta name="author" content="GuardPilot Team">
   <link rel="icon" href="favicon.png" type="image/png">
-
   <style>
     html {
       scroll-behavior: smooth;
-      font-family: Arial, sans-serif;
-      background-color: #000;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #000000, #0f0f0f);
       color: #fff;
       margin: 0;
       padding: 0;
     }
 
     body {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 20px;
       position: relative;
       z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px 50px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #00cfc1;
+      margin-bottom: 20px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    header a {
+      padding: 15px 30px;
+      background-color: #00cfc1;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    header a:hover {
+      background-color: #00a99d;
     }
 
     #background-video {
@@ -48,40 +77,6 @@
       z-index: 0;
     }
 
-    #video-preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('video-placeholder.jpg') no-repeat center center / cover;
-      z-index: -1;
-    }
-
-    #video-control {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #00cfc1;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #00cfc1;
-      z-index: 1001;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    #video-control.visible {
-      opacity: 1;
-    }
-
-    #video-control:hover {
-      background-color: #00a99d;
-    }
-
     nav {
       display: flex;
       justify-content: space-between;
@@ -98,7 +93,7 @@
     }
 
     nav .logo {
-      height: 80px;
+      height: 100px;
     }
 
     nav ul {
@@ -123,11 +118,11 @@
     }
 
     section {
-      margin: 120px 0 50px;
-      padding: 20px;
-      background-color: rgba(17, 17, 17, 0.9);
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 207, 193, 0.3);
+      margin: 100px 0;
+      padding: 30px;
+      background: linear-gradient(135deg, rgba(17, 17, 17, 0.95), rgba(34, 34, 34, 0.95));
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 207, 193, 0.3);
       opacity: 0;
       transform: translateY(50px);
       transition: opacity 1s ease, transform 1s ease;
@@ -141,21 +136,32 @@
     h2 {
       color: #00cfc1;
       margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
     }
 
     .contact-form input,
     .contact-form textarea {
       width: 100%;
-      margin-bottom: 10px;
-      padding: 10px;
+      margin-bottom: 15px;
+      padding: 15px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
     }
 
     .contact-form button {
       background-color: #00cfc1;
       color: white;
-      padding: 10px 20px;
+      padding: 15px 30px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -167,114 +173,37 @@
       transform: scale(1.05);
     }
 
-    #scrollTopBtn {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 99;
-      font-size: 18px;
-      background-color: #00cfc1;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #00cfc1;
-      transition: background-color 0.3s;
-    }
-
-    #scrollTopBtn:hover {
-      background-color: #00a99d;
-    }
-
-    .lang-switch {
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      background-color: #ff7a00;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #ff7a00;
-      transition: background-color 0.3s;
-    }
-
-    .lang-switch:hover {
-      background-color: #e96b00;
-    }
-
-    img {
-      loading: lazy;
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: #00cfc1;
-    }
-
-    @media (max-width: 768px) {
-      #video-control {
-        top: 80px;
-        right: 20px;
-        padding: 8px 12px;
-        font-size: 14px;
-      }
-
-      nav ul {
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-        background-color: rgba(17, 17, 17, 0.9);
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        padding: 10px;
-        border-radius: 10px;
-      }
-
-      nav ul.show {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <div id="video-preloader"></div>
-
   <video autoplay muted loop id="background-video">
     <source src="your-video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
   <div id="video-overlay"></div>
-  <button id="video-control" onclick="toggleVideo()">Pause</button>
-
-  <div id="preloader"><span>Loading...</span></div>
 
   <nav id="navbar">
     <img src="logo.png" alt="GuardPilot Logo" class="logo">
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <ul id="menu">
-      <li><a href="#about" onclick="closeMenu()">About</a></li>
-      <li><a href="#features" onclick="closeMenu()">Features</a></li>
-      <li><a href="#benefits" onclick="closeMenu()">Benefits</a></li>
-      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <div class="lang-switch" onclick="toggleLanguage()">EN | RU</div>
+  <header>
+    <h1>GuardPilot</h1>
+    <p>The Future of Autonomous Security</p>
+    <a href="#contact">Request Demo</a>
+  </header>
 
   <section id="about" class="animate-section">
     <h2>About GuardPilot</h2>
@@ -284,71 +213,38 @@
   <section id="features" class="animate-section">
     <h2>Features</h2>
     <ul>
-      <li>Autonomous navigation</li>
-      <li>Real-time video streaming</li>
-      <li>Secure cloud connection</li>
-      <li>Night vision and motion detection</li>
+      <li>🔹 Autonomous navigation</li>
+      <li>🔹 Real-time video streaming</li>
+      <li>🔹 Secure cloud connection</li>
+      <li>🔹 Night vision and motion detection</li>
     </ul>
   </section>
 
   <section id="benefits" class="animate-section">
     <h2>Benefits</h2>
     <ul>
-      <li>Enhanced security coverage</li>
-      <li>Cost-effective surveillance</li>
-      <li>24/7 operation</li>
-      <li>Easy deployment and management</li>
+      <li>🔸 Enhanced security coverage</li>
+      <li>🔸 Cost-effective surveillance</li>
+      <li>🔸 24/7 operation</li>
+      <li>🔸 Easy deployment and management</li>
     </ul>
   </section>
 
   <section id="contact" class="animate-section">
     <h2>Contact Us</h2>
-    <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST" target="_blank" onsubmit="showSuccessMessage()">
-      <input type="text" name="name" id="contact-name" placeholder="Your Name" required><br>
-      <input type="email" name="email" id="contact-email" placeholder="Your Email" required><br>
-      <textarea name="message" id="contact-message" rows="4" placeholder="Your Message" required></textarea><br>
+    <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST" target="_blank">
+      <input type="text" name="name" placeholder="Your Name" required><br>
+      <input type="email" name="email" placeholder="Your Email" required><br>
+      <textarea name="message" rows="4" placeholder="Your Message" required></textarea><br>
       <button type="submit">Send Message</button>
     </form>
-    <div class="success-message" id="success-message">Thank you! Your message has been sent.</div>
   </section>
 
-  <button id="scrollTopBtn" onclick="scrollToTop()">↑ Top</button>
+  <footer>
+    © 2025 GuardPilot. All rights reserved.
+  </footer>
 
   <script>
-    window.addEventListener('load', function () {
-      document.getElementById('preloader').style.display = 'none';
-      const video = document.getElementById('background-video');
-      const preloader = document.getElementById('video-preloader');
-      const controlButton = document.getElementById('video-control');
-      video.oncanplaythrough = function () {
-        video.style.display = 'block';
-        preloader.style.display = 'none';
-        controlButton.classList.add('visible');
-      };
-    });
-
-    function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.classList.toggle('show');
-    }
-
-    function closeMenu() {
-      const menu = document.getElementById('menu');
-      menu.classList.remove('show');
-    }
-
-    function toggleVideo() {
-      const video = document.getElementById('background-video');
-      const button = document.getElementById('video-control');
-      if (video.paused) {
-        video.play();
-        button.textContent = 'Pause';
-      } else {
-        video.pause();
-        button.textContent = 'Play';
-      }
-    }
-
     window.addEventListener('scroll', function () {
       const sections = document.querySelectorAll('section');
       const screenPosition = window.innerHeight / 1.3;
@@ -359,42 +255,7 @@
           section.classList.add('visible');
         }
       });
-
-      const scrollTopBtn = document.getElementById('scrollTopBtn');
-      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        scrollTopBtn.style.display = 'block';
-      } else {
-        scrollTopBtn.style.display = 'none';
-      }
-
-      let sectionsArray = ['about', 'features', 'benefits', 'contact'];
-      sectionsArray.forEach(id => {
-        let section = document.getElementById(id);
-        let link = document.querySelector(`nav ul li a[href='#${id}']`);
-        if (section && link) {
-          let rect = section.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
-        }
-      });
     });
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function showSuccessMessage() {
-      setTimeout(function () {
-        document.getElementById('success-message').style.display = 'block';
-      }, 500);
-    }
-
-    function toggleLanguage() {
-      alert('Language switching is not implemented in this demo.');
-    }
   </script>
 </body>
 </html>
